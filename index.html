@@ -1,716 +1,1084 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vigneshvaran - Java Developer</title>
-     <!-- Favicon -->
-    <link rel="icon" type="image/jpg" href="Vignesh_Pic.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vigneshvaran T | Portfolio</title>
+    <link rel="icon" type="image/jpg" href="Vignesh_Pic.jpg" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Public+Sans:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              background: "#faf9fa",
+              "on-background": "#1b1c1d",
+              surface: "#faf9fa",
+              "on-surface": "#1b1c1d",
+              "on-surface-variant": "#434653",
+              "surface-container-low": "#f5f3f4",
+              "surface-container": "#efedee",
+              "surface-container-high": "#e9e8e9",
+              "surface-container-highest": "#e3e2e3",
+              "surface-dim": "#dbdadb",
+              primary: "#094cb2",
+              "primary-container": "#3366cc",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#e7ebff",
+              "primary-fixed": "#d9e2ff",
+              outline: "#737784",
+              "outline-variant": "#c3c6d5",
+              tertiary: "#6d5e00",
+              "tertiary-container": "#bfab49",
+              "on-tertiary-container": "#4a3f00",
+              secondary: "#5a5f63",
+              "on-secondary-fixed-variant": "#42474b",
+              "inverse-primary": "#b1c5ff",
+              "surface-variant": "#e3e2e3",
+            },
+            fontFamily: {
+              headline: ["Noto Serif"],
+              body: ["Inter"],
+              label: ["Public Sans"],
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: #faf9fa;
+        color: #1b1c1d;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Noto Serif", serif;
+      }
+      .label-text {
+        font-family: "Public Sans", sans-serif;
+      }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 5%;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #007bff;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: linear-gradient(90deg, #007bff, #dc3545);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: #007bff;
-        }
-
+      /* Nav */
+      .glass-nav {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 4px;
+      }
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: #333;
+        transition: 0.3s;
+      }
+      @media (max-width: 768px) {
         .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
+          display: flex;
         }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            transition: 0.3s;
+        .nav-links-mobile {
+          display: none;
+          flex-direction: column;
+          background: white;
+          width: 100%;
+          padding: 2rem 0;
+          text-align: center;
+          gap: 1.5rem;
+          border-top: 1px solid #e3e2e3;
         }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 5%;
-            gap: 5rem;
+        .nav-links-mobile.active {
+          display: flex;
         }
-
-        .hero-content {
-            flex: 1;
+        .hero-grid {
+          flex-direction: column !important;
+          text-align: center;
         }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #007bff, #dc3545);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .hero-img-wrap {
+          order: -1;
         }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: #666;
-            max-width: 500px;
+        .resume-grid {
+          grid-template-columns: 1fr !important;
         }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+        .bento-grid {
+          grid-template-columns: 1fr !important;
+          height: auto !important;
         }
-
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            font-size: 1rem;
+        .bento-grid > div {
+          min-height: 300px;
         }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: #007bff;
-            border: 2px solid #007bff;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,123,255,0.3);
-        }
-
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-image img {
-            width: 100%;
-            max-width: 400px;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            transition: all 0.3s ease;
-        }
-
-        .hero-image img:hover {
-            transform: scale(1.05) rotate(5deg);
-        }
-
-        /* Sections */
-        section {
-            padding: 100px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-
-        /* About */
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .skill-icon {
-            font-size: 3rem;
-            background: linear-gradient(135deg, #007bff, #dc3545);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        /* Certifications */
         .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+          grid-template-columns: 1fr !important;
         }
-
-        .cert-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+        .proj-grid {
+          grid-template-columns: 1fr !important;
         }
+      }
 
-        .cert-card:hover {
-            transform: translateY(-10px);
+      /* Animations */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
-
-        .cert-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
+      .fade-up {
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards;
+      }
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+      .delay-2 {
+        animation-delay: 0.25s;
+      }
+      .delay-3 {
+        animation-delay: 0.4s;
+      }
+      .delay-4 {
+        animation-delay: 0.55s;
+      }
 
-        .cert-content {
-            padding: 1.5rem;
-        }
+      /* Hover card lift */
+      .card-lift {
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .card-lift:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+      }
 
-        /* Portfolio */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
+      /* Section */
+      .section-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 100px 5%;
+      }
 
-        .project-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
+      /* Cert / Project image */
+      .thumb {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
 
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
+      /* Btn */
+      .btn {
+        padding: 10px 24px;
+        border-radius: 50px;
+        font-family: "Public Sans", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #094cb2, #3366cc);
+        color: white;
+      }
+      .btn-secondary {
+        background: transparent;
+        color: #094cb2;
+        border: 2px solid #094cb2;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(9, 76, 178, 0.3);
+      }
 
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        /* Resume */
-        .resume-container {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .resume-viewer {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            height: 600px;
-        }
-
-        /* Contact */
-        .contact-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .contact-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #eee;
-            border-radius: 10px;
-            font-family: inherit;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #007bff;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                flex-direction: column;
-                background-color: white;
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
-                padding: 2rem 0;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .resume-container {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
+      /* Inline tag */
+      .tag {
+        display: inline-block;
+        padding: 2px 10px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        border-radius: 4px;
+      }
     </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-            <a href="https://www.linkedin.com/in/vignesh-varan-t" target="_blank">
-                Profile
-            </a>
-        </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Introduction</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#portfolio">Projects</a></li>
-                <li><a href="#resume">Resume</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+  </head>
+  <body>
+    <!-- ─── NAVBAR ─────────────────────────────────────── -->
+    <header class="fixed top-0 w-full z-50 bg-stone-50/90 glass-nav shadow-sm">
+      <nav
+        class="flex justify-between items-center px-8 md:px-12 py-5 max-w-screen-xl mx-auto"
+      >
+        <a
+          href="https://www.linkedin.com/in/vignesh-varan-t"
+          target="_blank"
+          class="font-serif italic text-xl font-bold text-stone-900"
+          >Vigneshvaran T</a
+        >
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Hi, I'm <span>Vigneshvaran</span></h1>
-            <p class="hero-subtitle">I am a Java Developer passionate about building intelligent applications that solve real-world problems. I enjoy transforming intricate challenges into clean, efficient, and high-performing solutions that deliver value to users.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Hire Me</a>
-                <a href="Vigneshvaran T Resume.pdf" class="btn btn-secondary">View Resume</a>
+        <!-- Desktop links -->
+        <ul class="hidden md:flex items-center gap-10 list-none">
+          <li>
+            <a
+              href="#home"
+              class="font-serif text-base text-blue-700 border-b-2 border-blue-700 pb-0.5"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#about"
+              class="font-serif text-base text-stone-600 hover:text-stone-900 transition-colors hover:underline decoration-blue-700 underline-offset-8"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#skills"
+              class="font-serif text-base text-stone-600 hover:text-stone-900 transition-colors hover:underline decoration-blue-700 underline-offset-8"
+              >Skills</a
+            >
+          </li>
+          <li>
+            <a
+              href="#certifications"
+              class="font-serif text-base text-stone-600 hover:text-stone-900 transition-colors hover:underline decoration-blue-700 underline-offset-8"
+              >Certifications</a
+            >
+          </li>
+          <li>
+            <a
+              href="#portfolio"
+              class="font-serif text-base text-stone-600 hover:text-stone-900 transition-colors hover:underline decoration-blue-700 underline-offset-8"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a
+              href="#resume"
+              class="font-serif text-base text-stone-600 hover:text-stone-900 transition-colors hover:underline decoration-blue-700 underline-offset-8"
+              >Resume</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="font-serif text-base text-stone-600 hover:text-stone-900 transition-colors hover:underline decoration-blue-700 underline-offset-8"
+              >Contact</a
+            >
+          </li>
+        </ul>
+
+        <a href="#contact" class="hidden md:block btn btn-primary"
+          >Get in Touch</a
+        >
+
+        <div class="hamburger md:hidden" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </nav>
+      <!-- Mobile dropdown -->
+      <div class="nav-links-mobile md:hidden px-8" id="mobileNav">
+        <a href="#home" class="font-serif text-stone-700 py-1">Home</a>
+        <a href="#about" class="font-serif text-stone-700 py-1">About</a>
+        <a href="#skills" class="font-serif text-stone-700 py-1">Skills</a>
+        <a href="#certifications" class="font-serif text-stone-700 py-1"
+          >Certifications</a
+        >
+        <a href="#portfolio" class="font-serif text-stone-700 py-1">Projects</a>
+        <a href="#resume" class="font-serif text-stone-700 py-1">Resume</a>
+        <a href="#contact" class="font-serif text-stone-700 py-1">Contact</a>
+      </div>
+    </header>
+
+    <!-- ─── HERO ───────────────────────────────────────── -->
+    <section id="home" class="pt-32 min-h-screen flex items-center">
+      <div class="section-wrap w-full">
+        <div class="flex hero-grid items-center gap-16">
+          <!-- Text -->
+          <div class="flex-1">
+            <span
+              class="label-text text-tertiary font-bold tracking-[0.2em] text-xs uppercase mb-6 block fade-up delay-1"
+            >
+              ECE Student · Java Developer · IoT Enthusiast
+            </span>
+            <h1
+              class="font-serif text-5xl md:text-7xl leading-[1.1] text-on-surface mb-6 fade-up delay-2"
+            >
+              Hi, I'm <span class="italic">Vigneshvaran</span>
+            </h1>
+            <p
+              class="font-body text-lg text-on-surface-variant max-w-lg leading-relaxed mb-10 fade-up delay-3"
+            >
+              A passionate Java Developer building intelligent applications that
+              solve real-world problems — from cattle health monitoring to
+              agricultural tech innovation.
+            </p>
+            <div class="flex gap-4 flex-wrap fade-up delay-4">
+              <a
+                href="#contact"
+                class="btn btn-primary flex items-center gap-2"
+              >
+                Hire Me
+                <span
+                  class="material-symbols-outlined text-sm"
+                  style="font-size: 16px"
+                  >arrow_forward</span
+                >
+              </a>
+              <a href="Vigneshvaran T Resume.pdf" class="btn btn-secondary"
+                >View Resume</a
+              >
             </div>
+          </div>
+
+          <!-- Image -->
+          <div class="hero-img-wrap flex-1 flex justify-center">
+            <div class="relative">
+              <div
+                class="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white"
+              >
+                <img
+                  src="Vignesh_Pic.jpg"
+                  alt="Vigneshvaran T"
+                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <!-- Floating badge -->
+              <div
+                class="absolute -bottom-4 -left-4 bg-white p-5 rounded-xl shadow-lg max-w-[220px] border border-stone-100"
+              >
+                <span
+                  class="label-text text-[9px] text-tertiary uppercase tracking-widest block mb-1"
+                  >Currently</span
+                >
+                <p
+                  class="font-serif italic text-sm leading-snug text-on-surface"
+                >
+                  3rd Year ECE @ Sethu Institute of Technology
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="hero-image">
-            <img src="Vignesh_Pic.jpg" alt="Vigneshvaran - Java Developer" loading="lazy">
-        </div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <p>I’m a passionate developer with a strong interest in Java programming and problem-solving.
-I enjoy building efficient, reliable, and creative solutions through clean code.</p>
-<p>Learning new technologies and improving system performance excites me.</p>
-<p>I’m currently pursuing my B.E. in Electronics and Communication Engineering.</p>
-<p>During my internship at Novitech, I gained valuable hands-on experience in software development.
-I love applying my technical skills to build innovative projects, like cattle health monitoring and landslide prediction systems.</p>
-<p>My focus is on strengthening my Java and IoT integration skills through continuous learning and experimentation.</p>
-<p>I aspire to become a skilled software developer in a dynamic company where I can contribute to impactful projects.</p>
+    <!-- ─── ABOUT ──────────────────────────────────────── -->
+    <section id="about" class="bg-surface-dim">
+      <div class="section-wrap">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div>
+            <span
+              class="label-text text-tertiary font-bold tracking-[0.2em] text-xs uppercase mb-4 block"
+              >About Me</span
+            >
+            <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-8">
+              Built for the <span class="italic">Intellectual</span> Web.
+            </h2>
+            <div
+              class="space-y-4 font-body text-base text-on-surface-variant leading-relaxed"
+            >
+              <p>
+                I'm a passionate developer with a strong interest in Java
+                programming and problem-solving — building efficient, reliable,
+                and creative solutions through clean code.
+              </p>
+              <p>
+                Currently pursuing B.E. in Electronics and Communication
+                Engineering at Sethu Institute of Technology, Tamil Nadu (CGPA:
+                7.7).
+              </p>
+              <p>
+                During my internship at
+                <strong class="text-on-surface">NoviTech R&D Pvt. Ltd.</strong>,
+                I gained hands-on experience across AI, Data Analytics, Full
+                Stack, IoT, and Python.
+              </p>
+              <p>
+                I aspire to become a skilled software developer in a dynamic
+                company where I can contribute to impactful, real-world projects
+                — especially in agriculture technology.
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-10 justify-center lg:justify-start">
+            <div class="text-center">
+              <div class="font-serif text-5xl mb-2 text-primary">7.7</div>
+              <div
+                class="label-text text-[10px] uppercase tracking-[0.2em] text-stone-500"
+              >
+                CGPA
+              </div>
+            </div>
+            <div class="text-center">
+              <div class="font-serif text-5xl mb-2 text-primary">12+</div>
+              <div
+                class="label-text text-[10px] uppercase tracking-[0.2em] text-stone-500"
+              >
+                Certifications
+              </div>
+            </div>
+            <div class="text-center">
+              <div class="font-serif text-5xl mb-2 text-primary">1st</div>
+              <div
+                class="label-text text-[10px] uppercase tracking-[0.2em] text-stone-500"
+              >
+                Prize — Project Expo
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- ─── SKILLS ─────────────────────────────────────── -->
     <section id="skills">
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fab fa-java"></i></div>
-                <h3>Java</h3>
-                <p>Java, Multithreading</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fab fa-html5"></i></div>
-                <h3>Web Development</h3>
-                <p>HTML, CSS, JavaScript</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-database"></i></div>
-                <h3>Databases</h3>
-                <p>MySQL, MongoDB</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-code"></i></div>
-                <h3>Tools & Frameworks</h3>
-                <p>Maven, Git, Arduino, ESP32</p>
-            </div>
+      <div class="section-wrap">
+        <div
+          class="flex flex-col md:flex-row justify-between items-end mb-14 gap-4"
+        >
+          <div>
+            <span
+              class="label-text text-tertiary font-bold tracking-[0.2em] text-xs uppercase mb-3 block"
+              >Technical Arsenal</span
+            >
+            <h2 class="font-serif text-4xl md:text-5xl">Skills</h2>
+          </div>
+          <div
+            class="h-px flex-grow bg-outline-variant/30 mx-8 hidden md:block"
+          ></div>
+          <span
+            class="label-text text-stone-400 text-xs uppercase tracking-widest"
+            >Vol. 01 — 2025</span
+          >
         </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            class="bg-surface-container-low p-8 rounded-xl card-lift text-center"
+          >
+            <i class="fab fa-java text-5xl mb-4 text-primary"></i>
+            <h3 class="font-serif text-xl mb-2">Java</h3>
+            <p
+              class="label-text text-xs text-on-surface-variant uppercase tracking-wide"
+            >
+              Java · Multithreading
+            </p>
+          </div>
+          <div
+            class="bg-surface-container-low p-8 rounded-xl card-lift text-center"
+          >
+            <i class="fab fa-html5 text-5xl mb-4 text-primary"></i>
+            <h3 class="font-serif text-xl mb-2">Web Development</h3>
+            <p
+              class="label-text text-xs text-on-surface-variant uppercase tracking-wide"
+            >
+              HTML · CSS · JavaScript
+            </p>
+          </div>
+          <div
+            class="bg-surface-container-low p-8 rounded-xl card-lift text-center"
+          >
+            <i class="fas fa-database text-5xl mb-4 text-primary"></i>
+            <h3 class="font-serif text-xl mb-2">Databases</h3>
+            <p
+              class="label-text text-xs text-on-surface-variant uppercase tracking-wide"
+            >
+              MySQL · MongoDB
+            </p>
+          </div>
+          <div
+            class="bg-surface-container-low p-8 rounded-xl card-lift text-center"
+          >
+            <i class="fas fa-microchip text-5xl mb-4 text-primary"></i>
+            <h3 class="font-serif text-xl mb-2">Embedded / IoT</h3>
+            <p
+              class="label-text text-xs text-on-surface-variant uppercase tracking-wide"
+            >
+              Arduino · ESP32 · Maven · Git
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications">
-        <h2 class="section-title">Certifications</h2>
-        <div class="cert-grid">
-            <div class="cert-card">
-                <img src="JavaDeveloperCertificationAchievement.png" alt="Java Certification" class="cert-image">
-                <div class="cert-content">
-                    <h3>Java Developer Achievement Certificate</h3>
-                    <a href="JavaDeveloperCertificationAchievement.pdf" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">View Certificate</a>
-                </div>
-            </div>
-            <div class="cert-card">
-                <img src="PythonAcheivement.png" alt="Python Certification" class="cert-image">
-                <div class="cert-content">
-                    <h3>Python Developer Achievement Certificate</h3>
-                    <a href="PythonAcheivement.pdf" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">View Certificate</a>
-                </div>
-            </div>
-            <div class="cert-card">
-                <img src="Web Development Fundamentals-IBM.png" alt="Web Development_IBM" class="cert-image">
-                <div class="cert-content">
-                    <h3>Web Development Fundamentals-IBM</h3>
-                    <a href="Web Development Fundamentals-IBM.png" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">View Certificate</a>
-                </div>
-            </div>
-            <div class="cert-card">
-                <img src="TCS Ion pic.png" alt="Web Development_IBM" class="cert-image">
-                <div class="cert-content">
-                    <h3>Career Edge-Young Professional</h3>
-                    <a href="TCS Ion.pdf" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">View Certificate</a>
-                </div>
-            </div>
-            <div class="cert-card">
-                <img src="naukri_campus_ai_ncat_participation_may_2025.png" alt="Web Development_IBM" class="cert-image">
-                <div class="cert-content">
-                    <h3>Naukri Campus Aptitude</h3>
-                    <a href="naukri_campus_ai_ncat_participation_may_2025.png" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">View Certificate</a>
-                </div>
-            </div>
-            <div class="cert-card">
-                <img src="multiparadigen programming with modern c.png" alt="Web Development_IBM" class="cert-image">
-                <div class="cert-content">
-                    <h3>multi-paradigen programming with modern c++</h3>
-                    <a href="multiparadigen programming with modern c.pdf" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">View Certificate</a>
-                </div>
-            </div>
-            <div class="cert-card">
-                <img src="Front End Development.png" alt="Web Development_IBM" class="cert-image">
-                <div class="cert-content">
-                    <h3>Front End Development</h3>
-                    <a href="VIGNESHVARAN T.pdf" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">View Certificate</a>
-                </div>
-            </div>
-            <div class="cert-card">
-                <img src="MasterClass in Artificial Intelligence.png" alt="Web Development_IBM" class="cert-image">
-                <div class="cert-content">
-                    <h3>MasterClass in Artificial Intelligence</h3>
-                    <a href="MasterClass in Artificial Intelligence.pdf" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">View Certificate</a>
-                </div>
-            </div>
-            <div class="cert-card">
-                <img src="Group Discussion_TCS ION.png" alt="Web Development_IBM" class="cert-image">
-                <div class="cert-content">
-                    <h3>Group Discussion</h3>
-                    <a href="Group Discussion_TCS ION.pdf" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">View Certificate</a>
-                </div>
-            </div>
-            <div class="cert-card">
-                <img src="data structure in c.png" alt="Web Development_IBM" class="cert-image">
-                <div class="cert-content">
-                    <h3>data structure in c</h3>
-                    <a href="data structure in c.pdf" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">View Certificate</a>
-                </div>
-            </div>
-            <div class="cert-card">
-                <img src="CertificateOfCompletion_OpenAI API Building FrontEnd Voice Apps with the Realtime API and WebRTC.png" alt="Web Development_IBM" class="cert-image">
-                <div class="cert-content">
-                    <h3>Building FrontEnd Voice Apps with the Realtime API and WebRTC</h3>
-                    <a href="CertificateOfCompletion_OpenAI API Building FrontEnd Voice Apps with the Realtime API and WebRTC.pdf" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">View Certificate</a>
-                </div>
-            </div>
-            <div class="cert-card">
-                <img src="Introduction to Internet of Things.png" alt="Web Development_IBM" class="cert-image">
-                <div class="cert-content">
-                    <h3>Introduction to Internet of Things</h3>
-                    <a href="Introduction to Internet of Things.pdf" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">View Certificate</a>
-                </div>
-            </div>
+    <!-- ─── CERTIFICATIONS ─────────────────────────────── -->
+    <section id="certifications" class="bg-surface-dim">
+      <div class="section-wrap">
+        <div class="mb-14">
+          <span
+            class="label-text text-tertiary font-bold tracking-[0.2em] text-xs uppercase mb-3 block"
+            >Credentials</span
+          >
+          <h2 class="font-serif text-4xl md:text-5xl">Certifications</h2>
         </div>
+        <div
+          class="cert-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <!-- cert cards -->
+          <div class="bg-white rounded-xl overflow-hidden card-lift shadow-sm">
+            <img
+              src="JavaDeveloperCertificationAchievement.png"
+              alt="Java Certification"
+              class="thumb"
+            />
+            <div class="p-5">
+              <span class="tag bg-primary/10 text-primary mb-3">Java</span>
+              <h3 class="font-serif text-lg mb-3">
+                Java Developer Achievement
+              </h3>
+              <a
+                href="JavaDeveloperCertificationAchievement.pdf"
+                class="btn btn-primary w-full text-center"
+                >View Certificate</a
+              >
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl overflow-hidden card-lift shadow-sm">
+            <img
+              src="PythonAcheivement.png"
+              alt="Python Certification"
+              class="thumb"
+            />
+            <div class="p-5">
+              <span class="tag bg-primary/10 text-primary mb-3">Python</span>
+              <h3 class="font-serif text-lg mb-3">
+                Python Developer Achievement
+              </h3>
+              <a
+                href="PythonAcheivement.pdf"
+                class="btn btn-primary w-full text-center"
+                >View Certificate</a
+              >
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl overflow-hidden card-lift shadow-sm">
+            <img
+              src="Web Development Fundamentals-IBM.png"
+              alt="IBM Web Dev"
+              class="thumb"
+            />
+            <div class="p-5">
+              <span class="tag bg-primary/10 text-primary mb-3">IBM</span>
+              <h3 class="font-serif text-lg mb-3">
+                Web Development Fundamentals — IBM
+              </h3>
+              <a
+                href="Web Development Fundamentals-IBM.png"
+                class="btn btn-primary w-full text-center"
+                >View Certificate</a
+              >
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl overflow-hidden card-lift shadow-sm">
+            <img src="TCS Ion pic.png" alt="TCS iON" class="thumb" />
+            <div class="p-5">
+              <span class="tag bg-primary/10 text-primary mb-3">TCS iON</span>
+              <h3 class="font-serif text-lg mb-3">
+                Career Edge — Young Professional
+              </h3>
+              <a href="TCS Ion.pdf" class="btn btn-primary w-full text-center"
+                >View Certificate</a
+              >
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl overflow-hidden card-lift shadow-sm">
+            <img
+              src="naukri_campus_ai_ncat_participation_may_2025.png"
+              alt="Naukri Aptitude"
+              class="thumb"
+            />
+            <div class="p-5">
+              <span class="tag bg-primary/10 text-primary mb-3">Aptitude</span>
+              <h3 class="font-serif text-lg mb-3">
+                Naukri Campus Aptitude (NCAT)
+              </h3>
+              <a
+                href="naukri_campus_ai_ncat_participation_may_2025.png"
+                class="btn btn-primary w-full text-center"
+                >View Certificate</a
+              >
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl overflow-hidden card-lift shadow-sm">
+            <img
+              src="multiparadigen programming with modern c.png"
+              alt="C++"
+              class="thumb"
+            />
+            <div class="p-5">
+              <span class="tag bg-primary/10 text-primary mb-3">C++</span>
+              <h3 class="font-serif text-lg mb-3">
+                Multi-Paradigm Programming with Modern C++
+              </h3>
+              <a
+                href="multiparadigen programming with modern c.pdf"
+                class="btn btn-primary w-full text-center"
+                >View Certificate</a
+              >
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl overflow-hidden card-lift shadow-sm">
+            <img
+              src="Front End Development.png"
+              alt="Front End Dev"
+              class="thumb"
+            />
+            <div class="p-5">
+              <span class="tag bg-primary/10 text-primary mb-3">Frontend</span>
+              <h3 class="font-serif text-lg mb-3">Front End Development</h3>
+              <a
+                href="VIGNESHVARAN T.pdf"
+                class="btn btn-primary w-full text-center"
+                >View Certificate</a
+              >
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl overflow-hidden card-lift shadow-sm">
+            <img
+              src="MasterClass in Artificial Intelligence.png"
+              alt="AI"
+              class="thumb"
+            />
+            <div class="p-5">
+              <span class="tag bg-primary/10 text-primary mb-3">AI</span>
+              <h3 class="font-serif text-lg mb-3">
+                MasterClass in Artificial Intelligence
+              </h3>
+              <a
+                href="MasterClass in Artificial Intelligence.pdf"
+                class="btn btn-primary w-full text-center"
+                >View Certificate</a
+              >
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl overflow-hidden card-lift shadow-sm">
+            <img
+              src="Group Discussion_TCS ION.png"
+              alt="Group Discussion"
+              class="thumb"
+            />
+            <div class="p-5">
+              <span class="tag bg-primary/10 text-primary mb-3"
+                >Soft Skills</span
+              >
+              <h3 class="font-serif text-lg mb-3">
+                Group Discussion — TCS ION
+              </h3>
+              <a
+                href="Group Discussion_TCS ION.pdf"
+                class="btn btn-primary w-full text-center"
+                >View Certificate</a
+              >
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl overflow-hidden card-lift shadow-sm">
+            <img
+              src="data structure in c.png"
+              alt="Data Structures"
+              class="thumb"
+            />
+            <div class="p-5">
+              <span class="tag bg-primary/10 text-primary mb-3">DSA</span>
+              <h3 class="font-serif text-lg mb-3">Data Structures in C</h3>
+              <a
+                href="data structure in c.pdf"
+                class="btn btn-primary w-full text-center"
+                >View Certificate</a
+              >
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl overflow-hidden card-lift shadow-sm">
+            <img
+              src="CertificateOfCompletion_OpenAI API Building FrontEnd Voice Apps with the Realtime API and WebRTC.png"
+              alt="OpenAI"
+              class="thumb"
+            />
+            <div class="p-5">
+              <span class="tag bg-primary/10 text-primary mb-3">OpenAI</span>
+              <h3 class="font-serif text-lg mb-3">
+                Building FrontEnd Voice Apps — Realtime API & WebRTC
+              </h3>
+              <a
+                href="CertificateOfCompletion_OpenAI API Building FrontEnd Voice Apps with the Realtime API and WebRTC.pdf"
+                class="btn btn-primary w-full text-center"
+                >View Certificate</a
+              >
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl overflow-hidden card-lift shadow-sm">
+            <img
+              src="Introduction to Internet of Things.png"
+              alt="IoT"
+              class="thumb"
+            />
+            <div class="p-5">
+              <span class="tag bg-primary/10 text-primary mb-3">IoT</span>
+              <h3 class="font-serif text-lg mb-3">
+                Introduction to Internet of Things
+              </h3>
+              <a
+                href="Introduction to Internet of Things.pdf"
+                class="btn btn-primary w-full text-center"
+                >View Certificate</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Internship Section -->
-    <section id="Internship">
-        <h2 class="section-title">Internship</h2>
-        <div class="Internship_tags">
-            <div class="project-card">
-                <img src="intern.jpg" alt="E-commerce Dashboard" class="project-image">
-                <div class="project-content">
-                    <h3>NoviTech R&D Private Limitated</h3>
-                    <p>One Month</p>
-                    <div style="margin-top: 1rem;">
-                        <a href="artificial intelligencenovitech.png" class="btn btn-primary">Artificial_Intelligence</a>
-                        <a href="data analytics novitech.png" class="btn btn-primary">Data_Analytics</a>
-                        <a href="full Stack development novitech.png" class="btn btn-primary">Full_Stack</a>
-                        <a href="internet of things novitech.png" class="btn btn-primary">Internet_Of_Things</a>
-                        <a href="python programming novitech.png" class="btn btn-primary">Python_Programming</a>
-                    </div>
-                </div>
-            </div>
+    <!-- ─── INTERNSHIP ─────────────────────────────────── -->
+    <section id="internship">
+      <div class="section-wrap">
+        <div class="mb-14">
+          <span
+            class="label-text text-tertiary font-bold tracking-[0.2em] text-xs uppercase mb-3 block"
+            >Experience</span
+          >
+          <h2 class="font-serif text-4xl md:text-5xl">Internship</h2>
         </div>
+        <div
+          class="bg-surface-container-low rounded-xl overflow-hidden card-lift shadow-sm flex flex-col md:flex-row max-w-4xl"
+        >
+          <img
+            src="intern.jpg"
+            alt="NoviTech Internship"
+            class="w-full md:w-72 h-56 md:h-auto object-cover"
+          />
+          <div class="p-8 flex flex-col justify-between">
+            <div>
+              <span class="tag bg-tertiary/10 text-tertiary mb-3"
+                >1 Month · 2024</span
+              >
+              <h3 class="font-serif text-2xl mb-2">
+                NoviTech R&D Private Limited
+              </h3>
+              <p
+                class="font-body text-on-surface-variant text-sm mb-6 leading-relaxed"
+              >
+                Completed a comprehensive internship covering AI, Data
+                Analytics, Full Stack Development, IoT, and Python Programming.
+                Gained practical, hands-on exposure across multiple technology
+                domains.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <a
+                href="artificial intelligencenovitech.png"
+                class="btn btn-secondary text-xs"
+                >AI</a
+              >
+              <a
+                href="data analytics novitech.png"
+                class="btn btn-secondary text-xs"
+                >Data Analytics</a
+              >
+              <a
+                href="full Stack development novitech.png"
+                class="btn btn-secondary text-xs"
+                >Full Stack</a
+              >
+              <a
+                href="internet of things novitech.png"
+                class="btn btn-secondary text-xs"
+                >IoT</a
+              >
+              <a
+                href="python programming novitech.png"
+                class="btn btn-secondary text-xs"
+                >Python</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio">
-        <h2 class="section-title">Projects</h2>
-        <div class="portfolio-grid">
-            <div class="project-card">
-                <img src="cattlepic2.png" alt="E-commerce Dashboard" class="project-image">
-                <div class="project-content">
-                    <h3>Cattle Health Monitoring</h3>
-                    <p>Microcontroller+Software</p>
-                    <div style="margin-top: 1rem;">
-                        <a href="video1.mp4" class="btn btn-secondary" style="margin-right: 0.5rem;">Live Demo</a>
-                        <a href="image2.jpeg" class="btn btn-primary">Photo</a>
-                        <a href="image3.jpeg" class="btn btn-primary">Photo</a>
-                    </div>
-                </div>
-            </div>
+    <!-- ─── PROJECTS ───────────────────────────────────── -->
+    <section id="portfolio" class="bg-surface-dim">
+      <div class="section-wrap">
+        <div
+          class="flex flex-col md:flex-row justify-between items-end mb-14 gap-4"
+        >
+          <div>
+            <span
+              class="label-text text-tertiary font-bold tracking-[0.2em] text-xs uppercase mb-3 block"
+              >Selected Works</span
+            >
+            <h2 class="font-serif text-4xl md:text-5xl">Projects</h2>
+          </div>
+          <div
+            class="h-px flex-grow bg-outline-variant/30 mx-8 hidden md:block"
+          ></div>
+          <span
+            class="label-text text-stone-400 text-xs uppercase tracking-widest"
+            >Vol. 02 — 2026</span
+          >
         </div>
+        <div class="proj-grid grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl">
+          <div class="bg-white rounded-xl overflow-hidden card-lift shadow-sm">
+            <img
+              src="cattlepic2.png"
+              alt="Cattle Health Monitoring"
+              class="thumb"
+            />
+            <div class="p-6">
+              <div class="flex gap-2 mb-3">
+                <span class="tag bg-primary/10 text-primary"
+                  >Microcontroller</span
+                >
+                <span class="tag bg-tertiary/10 text-tertiary">Java</span>
+              </div>
+              <h3 class="font-serif text-xl mb-2">
+                Cattle Health Monitoring System
+              </h3>
+              <p class="font-body text-on-surface-variant text-sm mb-4">
+                ESP32-based real-time cattle health monitoring with Java backend
+                and MySQL database integration.
+              </p>
+              <div class="flex gap-2 flex-wrap">
+                <a href="video1.mp4" class="btn btn-secondary text-xs"
+                  >Live Demo</a
+                >
+                <a href="image2.jpeg" class="btn btn-primary text-xs"
+                  >Photo 1</a
+                >
+                <a href="image3.jpeg" class="btn btn-primary text-xs"
+                  >Photo 2</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Placeholder for future project -->
+          <!-- <div class="bg-surface-container-high rounded-xl p-8 flex flex-col items-center justify-center text-center min-h-[300px] border-2 border-dashed border-outline-variant">
+        <span class="material-symbols-outlined text-4xl text-outline mb-4">add_circle</span>
+        <h3 class="font-serif text-xl text-on-surface-variant mb-2">More Coming Soon</h3>
+        <p class="label-text text-xs text-stone-400 uppercase tracking-widest">Smart Farmer Support System · Landslide Prediction</p>
+      </div> -->
+        </div>
+      </div>
     </section>
 
-    <!-- Resume Section -->
+    <!-- ─── RESUME ─────────────────────────────────────── -->
     <section id="resume">
-        <h2 class="section-title">Resume</h2>
-        <div class="resume-container">
-            <div class="resume-viewer">
-                <iframe src="Resume.png" width="100%" height="100%" style="border: none;"></iframe>
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
-                <h3 style="color: #333;">Resume.pdf</h3>
-                <a href="Vigneshvaran T Resume.pdf" class="btn btn-primary" style="width: 100%;">Resume-PDF</a>
-                <p style="color: #666; text-align: center; font-size: 0.9rem;">Updated: December 2025</p>
-            </div>
+      <div class="section-wrap">
+        <div class="mb-14">
+          <span
+            class="label-text text-tertiary font-bold tracking-[0.2em] text-xs uppercase mb-3 block"
+            >Documents</span
+          >
+          <h2 class="font-serif text-4xl md:text-5xl">Resume</h2>
         </div>
+        <div
+          class="resume-grid grid gap-8"
+          style="grid-template-columns: 1fr 280px"
+        >
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-sm"
+            style="height: 600px"
+          >
+            <iframe
+              src="Resume.png"
+              width="100%"
+              height="100%"
+              style="border: none"
+            ></iframe>
+          </div>
+          <div class="flex flex-col gap-4 items-start justify-start pt-4">
+            <h3 class="font-serif text-2xl">Vigneshvaran T Resume</h3>
+            <p
+              class="label-text text-xs text-on-surface-variant uppercase tracking-widest"
+            >
+              Updated: December 2025
+            </p>
+            <a
+              href="Vigneshvaran T Resume.pdf"
+              class="btn btn-primary w-full text-center"
+              >Download PDF</a
+            >
+            <p
+              class="font-body text-sm text-on-surface-variant leading-relaxed mt-2"
+            >
+              B.E. Electronics & Communication Engineering · Java Developer ·
+              IoT Specialist
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-content">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-phone" style="font-size: 2rem; color: #007bff; margin-bottom: 1rem;"></i>
-                    <h3>
-  <a href="tel:+917092517208" style="text-decoration: none; color: #333;"onmouseover="this.style.color='#007bff'" 
-   onmouseout="this.style.color='#333'">
-    +91 70925 17208
-  </a>
-</h3>
-<p>Mobile Number</p>
-
-                </div>
-                <div class="contact-item">
-    <i class="fas fa-envelope" style="font-size: 2rem; color: #dc3545; margin-bottom: 1rem;"></i>
-    <h3>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vignesh.mailbox5@gmail.com" 
-   target="_blank" 
-   style="text-decoration: none; color: #333;"onmouseover="this.style.color='#007bff'" 
-   onmouseout="this.style.color='#333'">
-   vignesh.mailbox5@gmail.com
-</a>
-
-    </h3>
-    <p>Gmail</p>
-</div>
-
+    <!-- ─── CONTACT ────────────────────────────────────── -->
+    <section id="contact" class="bg-surface-dim">
+      <div class="section-wrap text-center">
+        <span
+          class="label-text text-tertiary font-bold tracking-[0.3em] text-xs uppercase mb-6 block"
+          >Let's Connect</span
+        >
+        <h2 class="font-serif text-5xl md:text-6xl mb-6">
+          Have a project that needs a <span class="italic">finer touch?</span>
+        </h2>
+        <p
+          class="font-body text-lg text-on-surface-variant mb-12 max-w-xl mx-auto"
+        >
+          Open to opportunities, collaborations, and internships. Let's build
+          something impactful together.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+          <a
+            href="tel:+917092517208"
+            class="bg-white rounded-xl p-6 card-lift shadow-sm flex items-center gap-4 max-w-xs mx-auto sm:mx-0"
+          >
+            <i class="fas fa-phone text-2xl text-primary"></i>
+            <div class="text-left">
+              <div
+                class="label-text text-xs text-on-surface-variant uppercase tracking-widest mb-1"
+              >
+                Phone
+              </div>
+              <div class="font-serif text-base">+91 70925 17208</div>
             </div>
-            
+          </a>
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=vignesh.mailbox5@gmail.com"
+            target="_blank"
+            class="bg-white rounded-xl p-6 card-lift shadow-sm flex items-center gap-4 max-w-xs mx-auto sm:mx-0"
+          >
+            <i class="fas fa-envelope text-2xl text-red-500"></i>
+            <div class="text-left">
+              <div
+                class="label-text text-xs text-on-surface-variant uppercase tracking-widest mb-1"
+              >
+                Email
+              </div>
+              <div class="font-serif text-base">vignesh.mailbox5@gmail.com</div>
+            </div>
+          </a>
         </div>
+        <a
+          href="https://www.linkedin.com/in/vignesh-varan-t"
+          target="_blank"
+          class="font-serif text-2xl md:text-3xl text-primary border-b-2 border-primary/20 hover:border-primary transition-all pb-1"
+        >
+          linkedin.com/in/vignesh-varan-t
+        </a>
+      </div>
     </section>
+
+    <!-- ─── FOOTER ─────────────────────────────────────── -->
+    <footer class="border-t border-stone-200 bg-stone-100">
+      <div
+        class="flex flex-col md:flex-row justify-between items-center px-10 py-10 max-w-screen-xl mx-auto gap-6"
+      >
+        <div class="font-serif italic text-lg text-stone-800">
+          Vigneshvaran T
+        </div>
+        <div class="flex gap-8">
+          <a
+            href="https://www.linkedin.com/in/vignesh-varan-t"
+            target="_blank"
+            class="label-text text-xs uppercase tracking-widest text-stone-500 hover:text-blue-600 transition-colors"
+            >LinkedIn</a
+          >
+          <a
+            href="Vigneshvaran T Resume.pdf"
+            class="label-text text-xs uppercase tracking-widest text-stone-500 hover:text-blue-600 transition-colors"
+            >Resume</a
+          >
+          <a
+            href="mailto:vignesh.mailbox5@gmail.com"
+            class="label-text text-xs uppercase tracking-widest text-stone-500 hover:text-blue-600 transition-colors"
+            >Email</a
+          >
+        </div>
+        <div
+          class="label-text text-xs uppercase tracking-widest text-stone-500"
+        >
+          © 2026 Vigneshvaran T
+        </div>
+      </div>
+    </footer>
 
     <script>
-        // Mobile menu toggle
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
+      // Hamburger toggle
+      const hamburger = document.getElementById("hamburger");
+      const mobileNav = document.getElementById("mobileNav");
+      hamburger.addEventListener("click", () =>
+        mobileNav.classList.toggle("active"),
+      );
+      mobileNav
+        .querySelectorAll("a")
+        .forEach((a) =>
+          a.addEventListener("click", () =>
+            mobileNav.classList.remove("active"),
+          ),
+        );
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
         });
+      });
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            }
-        });
-
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! I\'ll get back to you soon.');
-            this.reset();
-        });
+      // Navbar scroll shadow
+      window.addEventListener("scroll", () => {
+        document.querySelector("header").style.boxShadow =
+          window.scrollY > 80 ? "0 2px 20px rgba(0,0,0,0.08)" : "none";
+      });
     </script>
-</body>
+  </body>
 </html>
-
-
-
-
